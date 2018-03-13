@@ -2,7 +2,7 @@ version: '3.1'
 services:
   wordpress:
       depends_on:
-        - db
+        - mariadb
       image: wordpress
       restart: always
       links:
