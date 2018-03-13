@@ -1,19 +1,28 @@
 version: '3.1'
 services:
   wordpress:
+      depends_on:
+        - db
       image: wordpress
+      restart: always
       links:
         - mariadb:mysql
       environment:
-        - WORDPRESS_DB_PASSWORD=password
+        - WORDPRESS_DB_HOST: mariadb:3390
+        - WORDPRESS_DB_USER: wordpress
+        - WORDPRESS_DB_PASSWORD: wordpress
       ports:
         - "8090:80"
       volumes:
-        - ./code:/code
         - ./html:/var/www/html
   mariadb:
       image: mariadb
+      restart: always
       environment:
+        - MYSQL_ROOT_PASSWORD=root
+        - MYSQL_DATABASE=wordpress_db
+        - MYSQL_USER=root
+        - MYSQL_PASSWORD=password
         - MYSQL_ROOT_PASSWORD=password
         - MYSQL_DATABASE=wordpress_db
       ports:
