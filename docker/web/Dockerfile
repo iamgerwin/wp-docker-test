@@ -1,4 +1,4 @@
-FROM wordpress:4.9.4-apache
+FROM wordpress:4.8.2-apache
 
 MAINTAINER iamgerwin@aim.com
 
